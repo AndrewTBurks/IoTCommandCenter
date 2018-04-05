@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Panel } from 'react-bootstrap'
+import { Panel , Row , Col} from 'react-bootstrap'
+import DeviceInfoList from './DeviceInfoList'
 
 class DeviceInfo extends Component {
   constructor(props) {
@@ -18,7 +19,21 @@ class DeviceInfo extends Component {
           {info.status}
         </Panel.Heading>
         <Panel.Body>
-          No Device History Found
+          <Row style={{height: "175px"}}> 
+            <Col md={3} style={{height:"100%", padding:"8px"}}>
+              <div style={{border: "1px solid #aaa", height:"100%", padding:"5px"}}>
+                Max:
+                Avg:
+                Min:
+              </div>
+            </Col>
+             
+            <Col md={9} style={{height:"100%", padding:"8px"}}>
+              <div style={{border: "1px solid #aaa", height:"100%", padding:"5px"}}>
+                No Device History Found
+              </div>
+            </Col>
+          </Row>
         </Panel.Body>
       </Panel>
      );

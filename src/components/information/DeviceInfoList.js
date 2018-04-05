@@ -10,7 +10,7 @@ class DeviceInfoList extends Component {
     let { devices } = this.state;
 
     return (
-      <div>
+      <div style={{overflowY: "scroll", maxHeight: "100%"}}>
         {
           devices.map(device => (
             <DeviceInfo info={device.info} status={device.status}/>
