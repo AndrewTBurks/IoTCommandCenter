@@ -12,8 +12,8 @@ class DeviceInfoList extends Component {
     return (
       <div style={{overflowY: "scroll", maxHeight: "100%"}}>
         {
-          devices.map(device => (
-            <DeviceInfo info={device.info} status={device.status}/>
+          devices.map((device, i) => (
+            <DeviceInfo key={i} info={device.info} status={device.status}/>
           ))
         }
       </div>

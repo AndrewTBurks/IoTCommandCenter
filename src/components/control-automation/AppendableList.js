@@ -13,7 +13,6 @@ class AppendableList extends Component {
 
   render() {
     let { items, name } = this.state;
-    console.log(this.state);
 
     return (
       <div className="appendableList">
@@ -26,8 +25,8 @@ class AppendableList extends Component {
         </div>
         <ListGroup>
           {
-            items.map(item => (
-              <ListGroupItem className="listSelectable">
+            items.map((item, i) => (
+              <ListGroupItem key={i} className="listSelectable">
                 {item}
               </ListGroupItem>
             ))

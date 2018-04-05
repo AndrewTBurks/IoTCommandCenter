@@ -10,8 +10,7 @@ class DeviceList extends Component {
     this.state = { devices: props.devices };
   }
 
-  render() { 
-    console.log(this.state.devices);
+  render() {
 
     return ( 
       <div className="deviceList">

@@ -10,7 +10,6 @@ class Device extends Component {
 
   render() { 
     let {info, status} = this.state;
-    console.log(this.state);
 
     return ( 
       <div className="device">
