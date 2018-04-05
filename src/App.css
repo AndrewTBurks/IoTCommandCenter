@@ -1,45 +1,55 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
-html, body, #root, .container-fluid {
-  height: 100%;
+html,
+body,
+#root,
+.container-fluid {
+    height: 100%;
 }
 
 .navbar-form button {
-  margin: 0 10px;
+    margin: 0 10px;
 }
 
 .content {
-  height: 90%;
+    height: 90%;
 }
 
 .mainPanel {
-  height: 100%;
+    height: 100%;
 }
 
-.spacesList, .scenesList, .deviceList {
-  height: 100%;
+.spacesList,
+.scenesList,
+.deviceList {
+    height: 100%;
 }
 
 .listHeader {
-  padding: 5px; 
+    padding: 5px;
 }
 
 .listHeader button {
-  float: right;
+    float: right;
 }
 
 .listHeader .listTitle {
-  display: inline-block;
-  font-size: 20px;
+    display: inline-block;
+    font-size: 20px;
 }
 
 .deviceList .device {
-  padding: 5px;
+    padding: 5px;
 }
 
 .deviceList .device .deviceName {
-  margin: 0 20px;
-  font-size: 16px;
+    margin: 0 20px;
+    font-size: 16px;
+}
+
+.listSelectable:hover {
+    cursor: pointer;
+    background-color: #dff0d8;
 }

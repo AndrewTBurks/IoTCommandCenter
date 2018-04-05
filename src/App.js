@@ -9,8 +9,11 @@ import {
 } from 'react-bootstrap';
 
 import UIPanel from './components/UIPanel';
+
 import DeviceList from './components/control-automation/DeviceList'
 import AppendableList from './components/control-automation/AppendableList'
+
+import DeviceInfoList from './components/information/DeviceInfoList';
 
 let defaultDevices = [
   { 
@@ -62,8 +65,7 @@ let defaultScenes = [
 
 class App extends Component {
   render() {
-    return (
-      <Grid fluid>
+    return <Grid fluid>
         <Navbar inverse fluid>
           <Navbar.Header>
             <Navbar.Brand>
@@ -72,40 +74,37 @@ class App extends Component {
           </Navbar.Header>
           <Navbar.Form pullRight>
             <Button bsStyle="info">
-              <Glyphicon glyph="user" style={{marginRight: "5px"}}/>
+              <Glyphicon glyph="user" style={{ marginRight: "5px" }} />
               Users
             </Button>
-            <Button bsStyle="danger">
-              Log Out
-              </Button>
+            <Button bsStyle="danger">Log Out</Button>
           </Navbar.Form>
         </Navbar>
         <Row className="content">
           <Col md={6} className="mainPanel">
-            <UIPanel title="Device Control and Automation">
-              <Row style={{height: "50%"}}>
+            <UIPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation">
+              <Row style={{ height: "50%" }}>
                 <Col md={6} className="spacesList">
-                  <AppendableList name="Spaces" items={defaultSpaces}/>
+                  <AppendableList name="Spaces" items={defaultSpaces} />
                 </Col>
                 <Col md={6} className="scenesList">
-                  <AppendableList name="Scenes" items={defaultScenes}/>
+                  <AppendableList name="Scenes" items={defaultScenes} />
                 </Col>
               </Row>
-              <Row style={{height: "50%"}}>
+              <Row style={{ height: "50%" }}>
                 <Col md={12}>
-                  <DeviceList devices={defaultDevices}/>
+                  <DeviceList devices={defaultDevices} />
                 </Col>
               </Row>
             </UIPanel>
           </Col>
           <Col md={6} className="mainPanel">
-            <UIPanel title="Device Information">
-
+            <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
+              <DeviceInfoList devices={defaultDevices} />
             </UIPanel>
           </Col>
         </Row>
-      </Grid>
-    );
+      </Grid>;
   }
 }
 

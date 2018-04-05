@@ -27,7 +27,7 @@ class AppendableList extends Component {
         <ListGroup>
           {
             items.map(item => (
-              <ListGroupItem>
+              <ListGroupItem className="listSelectable">
                 {item}
               </ListGroupItem>
             ))
