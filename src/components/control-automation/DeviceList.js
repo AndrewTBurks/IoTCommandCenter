@@ -11,7 +11,6 @@ class DeviceList extends Component {
   }
 
   render() {
-
     return ( 
       <div className="deviceList">
         <div className="listHeader">

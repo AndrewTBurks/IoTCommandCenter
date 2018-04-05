@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import { Panel , Row , Col} from 'react-bootstrap'
-import DeviceInfoList from './DeviceInfoList'
-
+import { Panel , Row , Col } from 'react-bootstrap'
+ 
 class DeviceInfo extends Component {
   constructor(props) {
     super(props);
