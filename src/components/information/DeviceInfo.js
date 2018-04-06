@@ -8,6 +8,11 @@ class DeviceInfo extends Component {
     this.state = { info: props.info, status: props.status };
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // just overwrite old state completely with new props
+    return { info: nextProps.info, status: nextProps.status };
+  }
+
   render() {
     let { info, status } = this.state;
 

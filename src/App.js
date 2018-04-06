@@ -9,63 +9,28 @@ import {
 } from 'react-bootstrap';
 
 import UIPanel from './components/UIPanel';
-
-import DeviceList from './components/control-automation/DeviceList'
-import AppendableList from './components/control-automation/AppendableList'
+import DeviceList from './components/control-automation/DeviceList';
+import AppendableList from './components/control-automation/AppendableList';
 
 import DeviceInfoList from './components/information/DeviceInfoList';
 
-let defaultDevices = [
-  { 
-    info: {
-      name: "Kitchen Fan"
-    },
-    status: "off"
-  },
-  { 
-    info: {
-      name: "Space Heater"
-    },
-    status: "on"
-  },
-  { 
-    info: {
-      name: "Incandescent Lamp"
-    },
-    status: "on"
-  },
-  { 
-    info: {
-      name: "Large Hadron Collider"
-    },
-    status: "off"
-  },
-  { 
-    info: {
-      name: "Dehumidifier"
-    },
-    status: "off"
-  }
-];
-
-let defaultSpaces = [
-  "Living Room",
-  "Kitchen",
-  "Bedroom",
-  "Outdoors"
-];
-
-let defaultScenes = [
-  "At Work",
-  "Good Morning",
-  "Bed Time",
-  "Party!"
-
-];
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      devices: props.devices,
+      spaces: props.spaces,
+      scenes: props.scenes
+    };
+  }
+
   render() {
-    return <Grid fluid>
+    let { devices, spaces, scenes } = this.state;
+    let _this = this; // alias this
+
+    return (
+      <Grid fluid>
         <Navbar inverse fluid>
           <Navbar.Header>
             <Navbar.Brand>
@@ -85,26 +50,38 @@ class App extends Component {
             <UIPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation">
               <Row style={{ height: "50%" }}>
                 <Col md={6} className="spacesList">
-                  <AppendableList name="Spaces" items={defaultSpaces} />
+                  <AppendableList name="Spaces" items={spaces}/>
                 </Col>
                 <Col md={6} className="scenesList">
-                  <AppendableList name="Scenes" items={defaultScenes} />
+                  <AppendableList name="Scenes" items={scenes}/>
                 </Col>
               </Row>
               <Row style={{ height: "50%" }}>
                 <Col md={12}>
-                  <DeviceList devices={defaultDevices} />
+                  <DeviceList devices={devices} onStatusChange={deviceChangeStatus}/>
                 </Col>
               </Row>
             </UIPanel>
           </Col>
           <Col md={6} className="mainPanel">
             <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
-              <DeviceInfoList devices={defaultDevices} />
+              <DeviceInfoList devices={devices} />
             </UIPanel>
           </Col>
         </Row>
-      </Grid>;
+      </Grid>
+    );
+
+    function deviceChangeStatus(deviceName, newStatus) {
+      console.log(deviceName, newStatus);
+      let newDevices = devices;
+  
+      let deviceIndex = newDevices.findIndex((el) => el.info.name === deviceName);
+  
+      newDevices[deviceIndex].status = newStatus;
+  
+      _this.setState({devices: newDevices});
+    }
   }
 }
 

@@ -6,6 +6,7 @@ class DeviceInfoList extends Component {
     super(props);
     this.state = { devices: props.devices };
   }
+
   render() {
     let { devices } = this.state;
 

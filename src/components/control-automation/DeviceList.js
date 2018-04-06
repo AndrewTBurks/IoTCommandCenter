@@ -20,7 +20,7 @@ class DeviceList extends Component {
           {
             this.state.devices.map((d, i) => (
               <ListGroupItem key={i}>
-                <Device info={d.info} status={d.status}/>
+                <Device info={d.info} status={d.status} onStatusChange={this.props.onStatusChange}/>
               </ListGroupItem>
             ))
           }
