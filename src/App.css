@@ -53,3 +53,36 @@ body,
     cursor: pointer;
     background-color: #dff0d8;
 }
+
+.device .labels{
+    float: right;
+    text-transform: capitalize;
+    padding: 5px 15px 5px 15px;
+    margin-right: 15px;
+}
+
+.deviceList .activateScene{
+    float: right;
+    margin-bottom: 5px;
+}
+
+.list-group{
+    margin-top: 5px;
+}
+
+.containerDiv{
+    display: inline-block;
+    width: 100%;
+    color: #406f8c;
+    font-weight: 600;
+}
+
+.info{
+    float: left;
+    margin-left:10px;
+}
+
+.sceneInfo{
+    float: right;
+    margin-right: 10px;
+}

@@ -11,6 +11,7 @@ class AppendableList extends Component {
     };
   }
 
+
   render() {
     let { items, name } = this.state;
 
@@ -26,8 +27,8 @@ class AppendableList extends Component {
         <ListGroup>
           {
             items.map((item, i) => (
-              <ListGroupItem key={i} className="listSelectable">
-                {item}
+              <ListGroupItem key={i} className="listSelectable" onClick={() => {this.props.itemSelected(name,item)}}>
+                {item.name}
               </ListGroupItem>
             ))
           }

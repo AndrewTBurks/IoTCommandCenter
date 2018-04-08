@@ -38,18 +38,77 @@ let defaultDevices = [
   }
 ];
 
+// let defaultSpaces = [
+//   "Living Room",
+//   "Kitchen",
+//   "Bedroom",
+//   "Outdoors"
+// ];
+
+// let defaultScenes = [
+//   "At Work",
+//   "Good Morning",
+//   "Bed Time",
+//   "Party!"
+// ];
+
 let defaultSpaces = [
-  "Living Room",
-  "Kitchen",
-  "Bedroom",
-  "Outdoors"
+    {
+      name: "Living Room",
+        devices: [
+            "Space Heater",
+            "Incandescent Lamp"
+        ]
+    },
+    {
+      name: "Kitchen",
+        devices: [
+            "Kitchen Fan",
+            "Incandescent Lamp"
+        ]
+    },
+    {
+      name: "Bedroom",
+        devices: [
+            "Incandescent Lamp"
+        ]
+    },
+    {
+      name: "Outdoors",
+        devices: [
+            "Incandescent Lamp"
+        ]
+    }
 ];
 
 let defaultScenes = [
-  "At Work",
-  "Good Morning",
-  "Bed Time",
-  "Party!"
+    {
+      name: "At Work",
+        devices: [
+            {deviceName: "Space Heater", deviceSceneStatus: "on"},
+            {deviceName: "Incandescent Lamp", deviceSceneStatus: "on"}
+        ]
+    },
+    {
+      name: "Good Morning",
+        devices: [
+            {deviceName: "Dehumidifier", deviceSceneStatus: "off"},
+            {deviceName: "Space Heater", deviceSceneStatus: "on"}
+        ]
+    },
+    {
+      name: "Bed Time",
+        devices: [
+            {deviceName: "Incandescent Lamp", deviceSceneStatus: "off"},
+            {deviceName: "Space Heater", deviceSceneStatus: "on"}
+        ]
+    },
+    {
+      name: "Party!",
+        devices: [
+            {deviceName: "Incandescent Lamp", deviceSceneStatus: "on"}
+        ]
+    }
 ];
 
 ReactDOM.render(<App 
