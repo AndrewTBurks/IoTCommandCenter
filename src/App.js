@@ -5,7 +5,8 @@ import {
   Grid, Row, Col,
   Navbar,
   Button, 
-  Glyphicon
+  Glyphicon,
+  Modal
 } from 'react-bootstrap';
 
 import UIPanel from './components/UIPanel';
@@ -24,16 +25,19 @@ class App extends Component {
       scenes: props.scenes,
       componentDevices:props.devices,
       componentName: 'All',
-        isScene: null
+      isScene: null,
+      activationStatus: null,
+      modalState: false
     };
   }
 
+
   render() {
-    let { devices, spaces, scenes, componentDevices, componentName, isScene } = this.state;
+    let { devices, spaces, scenes, componentDevices, componentName, isScene, activationStatus, modalState } = this.state;
     let _this = this; // alias this
 
     return (
-      <Grid fluid>
+      <Grid fluid className="modal-container">
         <Navbar inverse fluid>
           <Navbar.Header>
             <Navbar.Brand>
@@ -61,7 +65,8 @@ class App extends Component {
               </Row>
               <Row style={{ height: "50%" }}>
                 <Col md={12}>
-                  <DeviceList devices={componentDevices} componentName={componentName} isScene={isScene} onStatusChange={deviceChangeStatus}/>
+                  <DeviceList devices={componentDevices} componentName={componentName} isScene={isScene} activationStatus={activationStatus} onStatusChange={deviceChangeStatus}
+                              onSceneActivation={sceneDevicesChangeStatus}/>
                 </Col>
               </Row>
             </UIPanel>
@@ -72,8 +77,38 @@ class App extends Component {
             </UIPanel>
           </Col>
         </Row>
+
+        {/*scene activation success dialog*/}
+
+          <Modal
+            show={modalState}
+            onHide={handleHide}
+            bsSize="sm"
+            dialogClassName="successModal"
+          >
+            <Modal.Header className="modalHeader">
+              <Modal.Title>
+                <Glyphicon glyph="ok" className="glyphOk" style={{ marginRight: "5px", color: "#69a85c" }} />
+              </Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+              <span className="successMessage">Success</span>
+              Scene has been successfully activated
+            </Modal.Body>
+
+            <Modal.Footer className="modalFooter">
+              <Button className="modalCloseButton" onClick={handleHide}>Proceed</Button>
+            </Modal.Footer>
+          </Modal>
+
+
       </Grid>
     );
+
+    function handleHide() {
+        _this.setState({modalState: false});
+    }
 
     function deviceChangeStatus(deviceName, newStatus) {
       // console.log(deviceName, newStatus);
@@ -86,13 +121,36 @@ class App extends Component {
       _this.setState({devices: newDevices});
     }
 
+    function sceneDevicesChangeStatus(sceneDevices, sceneName){
+        let newDevices = devices;
+        let newScenes = scenes;
+
+        let sName = sceneName.substring(sceneName.indexOf(':') + 2);
+
+        newScenes.forEach(function (s) {
+           if(s.name === sName){
+               s.activationStatus = "active";
+           }
+        });
+
+        newDevices.forEach(function (d) {
+          sceneDevices.forEach(function (sd) {
+              if(d.info.name === sd.info.name){
+                  d.status = sd.deviceSceneStatus;
+              }
+          });
+        });
+
+        _this.setState({devices: newDevices, activationStatus: "active", modalState: true, scenes: newScenes});
+    }//sceneDevicesChangeStatus()
+
     // componentName defines what is selected (Scene or Space)
     function onItemSelection(componentName, itemSelected){
-      // console.log(itemSelected.devices);
-      let newComponentDevices, isScene;
+      let newComponentDevices, isScene, activationStatus;
 
       if(componentName === 'Scenes'){
           isScene = true;
+          activationStatus = itemSelected.activationStatus;
           componentName = 'Scene: ' + itemSelected.name;
           newComponentDevices = itemSelected.devices.map((object) => _this.state.devices.find((device) => device.info.name === object.deviceName));
 
@@ -102,13 +160,12 @@ class App extends Component {
           });
       }
       else{
-        isScene = false;
+          isScene = false;
           newComponentDevices = itemSelected.devices.map((name) => _this.state.devices.find((device) => device.info.name === name));
           componentName = 'Space: ' + itemSelected.name;
       }
 
-      _this.setState({componentDevices: newComponentDevices, componentName: componentName, isScene: isScene});
-      // console.log(componentDevices);
+      _this.setState({componentDevices: newComponentDevices, componentName: componentName, isScene: isScene, activationStatus: activationStatus});
     }//onItemSelection()
 
 

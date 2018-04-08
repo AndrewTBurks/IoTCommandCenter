@@ -86,3 +86,33 @@ body,
     float: right;
     margin-right: 10px;
 }
+
+/*modal styles*/
+.successModal{
+    text-align: center;
+}
+
+.successMessage{
+    display: block;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #69a85c;
+}
+
+.modalHeader{
+    background-color: #dff0d8;
+}
+
+.glyphOk{
+    font-size: 35px;
+}
+
+.modalFooter{
+    text-align: center;
+    background-color: #dff0d8;
+}
+
+.modalCloseButton{
+    padding: 10px;
+    font-size: 15px;
+}

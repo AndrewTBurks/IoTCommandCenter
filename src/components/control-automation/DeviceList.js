@@ -13,13 +13,14 @@ class DeviceList extends Component {
   }
 
   render() {
-      // console.log(this.props.isScene);
     return ( 
       <div className="deviceList">
         <div className="listHeader">
             {
                 this.props.isScene ? (
-                    <Button bsStyle="success" className="activateScene">Activate Scene</Button>
+                    this.props.activationStatus === 'active' ?
+                        (<Button bsStyle="success" className="activateScene" disabled>Active</Button>) :
+                        (<Button bsStyle="success" className="activateScene" onClick={() => {this.props.onSceneActivation(this.props.devices, this.props.componentName);}}>Activate Scene</Button>)
                 ) : (
                     ""
                 )
