@@ -140,14 +140,13 @@ const defaultDeviceDataMap = new Map(
   )
 );
 
+// initilize device statuses based on the last power value
 for (let device of defaultDeviceData) {
-  console.log(device);
 
   let deviceInd = defaultDevices.findIndex((d) => {
     return d.info.name === device.deviceName;
   });
 
-  console.log(device.powerData[device.powerData.length - 1]);
   defaultDevices[deviceInd].status = device.powerData[device.powerData.length - 1].power === 0 ? "off" : "on";
 }
 
