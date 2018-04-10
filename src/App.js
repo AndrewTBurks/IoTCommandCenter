@@ -86,11 +86,11 @@ class App extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Navbar.Form pullRight>
-            <Button bsStyle="info">
+            <Button bsStyle="info" disabled>
               <Glyphicon glyph="user" style={{ marginRight: "5px" }} />
               Users
             </Button>
-            <Button bsStyle="danger">Log Out</Button>
+            <Button bsStyle="danger" disabled>Log Out</Button>
           </Navbar.Form>
         </Navbar>
 
