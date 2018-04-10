@@ -17,7 +17,7 @@ class DeviceInfo extends Component {
     let { info, status, data } = this.state;
     let powerValues = data.map(x => x.power);
     let max = Math.max(...powerValues);
-    let min = Math.min(...powerValues);
+    let min = Math.min(...powerValues.filter(val => val !== 0));
     let avg = (powerValues.reduce((a, b)=>a+b)/powerValues.length);
     return (
       <Panel className="deviceInfo" bsStyle={status === "on" ? "success" : "danger"}>

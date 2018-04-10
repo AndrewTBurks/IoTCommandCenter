@@ -19,10 +19,12 @@ class DeviceChart extends Component {
     });
     return (
       <XYPlot
-        width={400}
-        height={175}>
+        width={500}
+        height={170}>
         <LineMarkSeries data={chartData}/>
-    </XYPlot>
+        {/* <XAxis title="Time" /> */}
+        <YAxis title="Usage (W)"/>
+      </XYPlot>
     );
   }
 }
