@@ -102,12 +102,12 @@ class App extends Component {
                   <AddScenePanel devices={devices} onsave={this.onSaveNewScene} oncancel={this.onCancelSceneCreation} />
                 ) :
                 (
-                  <ControlAutomationPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation" spaces={spaces} scenes={scenes} onItemSelection={onItemSelection} devicesListProps={devicesListProps} />
+                  <ControlAutomationPanel spaces={spaces} scenes={scenes} onItemSelection={onItemSelection} devicesListProps={devicesListProps} />
                 )
             }
           </Col>
           <Col md={6} className="mainPanel">
-            <DeviceInformationPanel title="Device Information" description="Use this section to explore device information and statistics" devices={devices} deviceDataMap={deviceDataMap}/>
+            <DeviceInformationPanel devices={devices} deviceDataMap={deviceDataMap}/>
           </Col>
         </Row>
 

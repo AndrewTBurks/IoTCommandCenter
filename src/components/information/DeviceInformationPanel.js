@@ -25,7 +25,7 @@ class DeviceInformationPanel extends Component {
     let { devices, deviceDataMap } = this.state;
 
     return (
-      <UIPanel title="Device Information" descriqption="Use this section to explore device information and statistics">
+      <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
         <DeviceInfoList devices={devices} data={deviceDataMap} />
       </UIPanel>
     );
