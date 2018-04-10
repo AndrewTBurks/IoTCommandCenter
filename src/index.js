@@ -116,8 +116,27 @@ let defaultScenes = [
     }
 ];
 
+const defaultDeviceData = defaultDevices.map(
+  device =>{
+    let toDate = new Date();
+    let fromDate = new Date();
+    fromDate.setDate(toDate.getDate() -1);
+    return getPowerData(
+      device.info.name,
+      fromDate,
+      toDate
+    )
+  }
+);
+
+const defaultDeviceDataMap = new Map(
+  defaultDeviceData.map((data) => [data.deviceName, data.powerData]
+  )
+);
+
 ReactDOM.render(<App 
   devices={defaultDevices}
+  deviceDataMap={defaultDeviceDataMap}
   spaces={defaultSpaces}
   scenes={defaultScenes}/>, document.getElementById('root'));
 

@@ -23,6 +23,7 @@ class App extends Component {
 
     this.state = {
       devices: props.devices,
+      deviceDataMap: props.deviceDataMap,
       spaces: props.spaces,
       scenes: props.scenes,
       componentDevices: props.devices,
@@ -35,7 +36,7 @@ class App extends Component {
 
 
   render() {
-    let { devices, spaces, scenes, componentDevices, componentName, isScene, activationStatus, modalState } = this.state;
+    let { devices, deviceDataMap, spaces, scenes, componentDevices, componentName, isScene, activationStatus, modalState } = this.state;
     let _this = this; // alias this
 
     //property for devicelist
@@ -75,7 +76,7 @@ class App extends Component {
 
           <Col md={6} className="mainPanel">
             <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
-              <DeviceInfoList devices={devices} />
+              <DeviceInfoList devices={devices} data={deviceDataMap} />
             </UIPanel>
           </Col>
         </Row>

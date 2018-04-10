@@ -5,7 +5,7 @@ import { Panel , Row , Col } from 'react-bootstrap'
 class DeviceInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = { info: props.info, status: props.status };
+    this.state = { info: props.info, status: props.status, data: props.data };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -14,8 +14,11 @@ class DeviceInfo extends Component {
   }
 
   render() {
-    let { info, status } = this.state;
-
+    let { info, status, data } = this.state;
+    let powerValues = data.map(x => x.power);
+    let max = Math.max(...powerValues);
+    let min = Math.min(...powerValues);
+    let avg = (powerValues.reduce((a, b)=>a+b)/powerValues.length);
     return (
       <Panel className="deviceInfo" bsStyle={status === "on" ? "success" : "danger"}>
         <Panel.Heading className="deviceInfoHeader">
@@ -26,9 +29,9 @@ class DeviceInfo extends Component {
           <Row style={{height: "175px"}}> 
             <Col md={3} style={{height:"100%", padding:"8px"}}>
               <div style={{border: "1px solid #aaa", height:"100%", padding:"5px"}}>
-                Max:
-                Avg:
-                Min:
+                <p style={{padding: "5px"}}>Max: {max.toFixed(2)} W</p>
+                <p style={{padding: "5px"}}>Avg: {avg.toFixed(2)} W</p>
+                <p style={{padding: "5px"}}>Min: {min.toFixed(2)} W</p>
               </div>
             </Col>
              
