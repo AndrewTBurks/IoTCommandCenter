@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import getPowerData from './data';
 
 import './index.css';
 import App from './App';
@@ -121,3 +122,4 @@ ReactDOM.render(<App
   scenes={defaultScenes}/>, document.getElementById('root'));
 
 registerServiceWorker();
+//console.log(getPowerData("Incandescent Lamp", new Date("2018-04-01"),new Date("2018-04-02")));
