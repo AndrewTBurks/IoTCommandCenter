@@ -11,12 +11,10 @@ import {
 } from 'react-bootstrap';
 
 import UIPanel from './components/UIPanel';
-
 import DeviceInfoList from './components/information/DeviceInfoList';
-
 import AddScenePanel from './components/control-automation/AddScenePanel';
-
 import ControlAutomationPanel from './components/control-automation/ControlAutomationPanel';
+import DeviceInformationPanel from './components/information/DeviceInformationPanel';
 
 class App extends Component {
   constructor(props) {
@@ -42,7 +40,7 @@ class App extends Component {
   }
 
   onAddScene() {
-    this.setState({creatingScene: true});
+    this.setState({ creatingScene: true });
   }
 
   onSaveNewScene(sceneInfo) {
@@ -99,19 +97,17 @@ class App extends Component {
 
           <Col md={6} className="mainPanel">
             {
-              this.state.creatingScene ? 
-              (
-                <AddScenePanel devices={devices} onsave={this.onSaveNewScene} oncancel={this.onCancelSceneCreation}/>
-              ) : 
-              (
-                <ControlAutomationPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation" spaces={spaces} scenes={scenes} onItemSelection={onItemSelection} devicesListProps={devicesListProps} />
-              )
+              this.state.creatingScene ?
+                (
+                  <AddScenePanel devices={devices} onsave={this.onSaveNewScene} oncancel={this.onCancelSceneCreation} />
+                ) :
+                (
+                  <ControlAutomationPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation" spaces={spaces} scenes={scenes} onItemSelection={onItemSelection} devicesListProps={devicesListProps} />
+                )
             }
           </Col>
           <Col md={6} className="mainPanel">
-            <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
-              <DeviceInfoList devices={devices} data={deviceDataMap} />
-            </UIPanel>
+            <DeviceInformationPanel title="Device Information" description="Use this section to explore device information and statistics" devices={devices} deviceDataMap={deviceDataMap}/>
           </Col>
         </Row>
 
