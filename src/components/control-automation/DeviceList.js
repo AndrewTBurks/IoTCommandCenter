@@ -14,7 +14,7 @@ class DeviceList extends Component {
 
   render() {
     return ( 
-      <div className="deviceList">
+      <div className="deviceList" style={{height: "100%"}}>
         <div className="listHeader">
             {
                 this.props.isScene ? (
@@ -35,15 +35,17 @@ class DeviceList extends Component {
                 ) : ("")
             }
         </div>
-        <ListGroup>
-          {
-            this.props.devices.map((d, i) => (
-              <ListGroupItem key={i}>
-                <Device info={d.info} status={d.status} deviceSceneStatus={d.deviceSceneStatus} isScene={this.props.isScene} onStatusChange={this.props.onStatusChange}/>
-              </ListGroupItem>
-            ))
-          }
-        </ListGroup>
+        <div style={{overflowY: "scroll", maxHeight: "80%"}}>        
+          <ListGroup>
+            {
+              this.props.devices.map((d, i) => (
+                <ListGroupItem key={i}>
+                  <Device info={d.info} status={d.status} deviceSceneStatus={d.deviceSceneStatus} isScene={this.props.isScene} onStatusChange={this.props.onStatusChange}/>
+                </ListGroupItem>
+              ))
+            }
+          </ListGroup>
+        </div>
       </div>
     );
   }

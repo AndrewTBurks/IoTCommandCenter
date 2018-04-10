@@ -9,7 +9,8 @@ class AddSceneSelectedDevices extends Component {
       devices: props.devices.map(d => ({
         deviceName: d.info.name,
         deviceSceneStatus: "off"
-      }))
+      })),
+      inputVal: ""
     };
 
     this.updateDeviceSelectedStatus = this.updateDeviceSelectedStatus.bind(this);
@@ -46,7 +47,7 @@ class AddSceneSelectedDevices extends Component {
 
   onSaveScene() {
     let scene = {
-      name: this.inputVal || "Default Name", // verify input later
+      name: this.state.inputVal,
       activationStatus: "inactive",
       devices: this.state.devices
     };
@@ -70,7 +71,7 @@ class AddSceneSelectedDevices extends Component {
                   type="text"
                   placeholder="Enter the scene Name"
                   style={{marginRight: "10px"}}
-                  onChange={function(event) { _this.inputVal = event.target.value; }}
+                  onChange={function(event) { _this.setState({inputVal: event.target.value}); }}
                 />
                 <Button
                   bsStyle="danger"
@@ -81,8 +82,9 @@ class AddSceneSelectedDevices extends Component {
                   onClick={() => { this.props.oncancel(); }}
                 >Cancel</Button>
                 <Button
+                  disabled={!(this.state.inputVal.length && this.state.devices.length)}
                   bsStyle="success"
-                  style={{ 
+                  style={{
                     float: "right",
                     margin: "0 3px"
                   }}

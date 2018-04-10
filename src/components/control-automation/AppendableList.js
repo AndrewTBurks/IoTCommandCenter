@@ -16,7 +16,7 @@ class AppendableList extends Component {
     let { items, name } = this.state;
 
     return (
-      <div className="appendableList">
+      <div className="appendableList" style={{height: "100%"}}>
         <div className="listHeader">
           <div className="listTitle">{name}</div>
           <Button 
@@ -28,15 +28,17 @@ class AppendableList extends Component {
             Add
           </Button>
         </div>
-        <ListGroup>
-          {
-            items.map((item, i) => (
-              <ListGroupItem key={i} className="listSelectable" onClick={() => {this.props.itemSelected(name,item)}}>
-                {item.name}
-              </ListGroupItem>
-            ))
-          }
-        </ListGroup>
+        <div style={{overflowY: "scroll", maxHeight: "80%"}}>        
+          <ListGroup>
+            {
+              items.map((item, i) => (
+                <ListGroupItem key={i} className="listSelectable" onClick={() => {this.props.itemSelected(name,item)}}>
+                  {item.name}
+                </ListGroupItem>
+              ))
+            }
+          </ListGroup>
+        </div>
       </div>
     );
   }
