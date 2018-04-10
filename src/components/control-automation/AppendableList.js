@@ -19,7 +19,11 @@ class AppendableList extends Component {
       <div className="appendableList">
         <div className="listHeader">
           <div className="listTitle">{name}</div>
-          <Button bsSize="xsmall" bsStyle="success">
+          <Button 
+            bsSize="xsmall" 
+            bsStyle="success"
+            disabled={ this.props.onadd ? false : true }
+            onClick={ () => { this.props.onadd(); } }>
             <Glyphicon glyph="plus"/>
             Add
           </Button>

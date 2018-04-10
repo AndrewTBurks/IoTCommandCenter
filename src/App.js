@@ -11,11 +11,11 @@ import {
 } from 'react-bootstrap';
 
 import UIPanel from './components/UIPanel';
-import DeviceList from './components/control-automation/DeviceList';
-import AppendableList from './components/control-automation/AppendableList';
 
 import DeviceInfoList from './components/information/DeviceInfoList';
+
 import AddScenePanel from './components/control-automation/AddScenePanel';
+
 import ControlAutomationPanel from './components/control-automation/ControlAutomationPanel';
 
 class App extends Component {
@@ -32,7 +32,7 @@ class App extends Component {
       activationStatus: null,
       modalState: false,
 
-      creatingScene: true
+      creatingScene: false
     };
 
     this.onAddScene = this.onAddScene.bind(this);
@@ -73,9 +73,9 @@ class App extends Component {
       isScene: isScene,
       activationStatus: activationStatus,
       deviceChangeStatus: deviceChangeStatus,
-      sceneDevicesChangeStatus: sceneDevicesChangeStatus
+      sceneDevicesChangeStatus: sceneDevicesChangeStatus,
+      onAddScene: this.onAddScene
     };
-
 
     return (
       <Grid fluid className="modal-container">
@@ -97,26 +97,20 @@ class App extends Component {
         <Row className="content">
 
           <Col md={6} className="mainPanel">
-
-            <ControlAutomationPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation" spaces={spaces} scenes={scenes} onItemSelection={onItemSelection} devicesListProps={devicesListProps} />
-          </Col>
-
-          <Col md={6} className="mainPanel">
             {
               this.state.creatingScene ? 
               (
                 <AddScenePanel devices={devices} onsave={this.onSaveNewScene} oncancel={this.onCancelSceneCreation}/>
               ) : 
               (
-                <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
-                  <DeviceInfoList devices={devices} />
-                </UIPanel>
+                <ControlAutomationPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation" spaces={spaces} scenes={scenes} onItemSelection={onItemSelection} devicesListProps={devicesListProps} />
               )
             }
-            {/* <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
+          </Col>
+          <Col md={6} className="mainPanel">
+            <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
               <DeviceInfoList devices={devices} />
-            </UIPanel> */}
-            {/* <AddScenePanel devices={devices} onsave={onSaveNewScene} oncancel={onCancelSceneCreation}/> */}
+            </UIPanel>
           </Col>
         </Row>
 
@@ -189,6 +183,8 @@ class App extends Component {
     // componentName defines what is selected (Scene or Space)
     function onItemSelection(componentName, itemSelected) {
       let newComponentDevices, isScene, activationStatus;
+
+      console.log("onItemSelection", arguments);
 
       if (componentName === 'Scenes') {
         isScene = true;

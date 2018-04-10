@@ -8,6 +8,7 @@ import { Row, Col } from 'react-bootstrap';
 class ControlAutomationPanel extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       spaces: props.spaces, 
       scenes: props.scenes, 
@@ -15,9 +16,19 @@ class ControlAutomationPanel extends Component {
     };
   }
 
+  static getDerivedStateFromProps(newProps, prevState) {
+    return {
+      spaces: newProps.spaces, 
+      scenes: newProps.scenes, 
+      devicesListProps: newProps.devicesListProps,
+    };
+  }
 
   render() {
     let { spaces, scenes, devicesListProps } = this.state;
+
+    console.log(this.props.devicesListProps.componentDevices);
+    console.log(this.state.devicesListProps.componentDevices);
 
     return (
         <UIPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation">
@@ -26,13 +37,18 @@ class ControlAutomationPanel extends Component {
             <AppendableList name="Spaces" items={spaces} itemSelected={this.props.onItemSelection}/>
           </Col>
           <Col md={6} className="scenesList">
-            <AppendableList name="Scenes" items={scenes} itemSelected={this.props.onItemSelection}/>
+            <AppendableList name="Scenes" items={scenes} itemSelected={this.props.onItemSelection} onadd={this.state.devicesListProps.onAddScene}/>
           </Col>
         </Row>
         <Row style={{ height: "50%" }}>
           <Col md={12}>
-            <DeviceList devices={devicesListProps.componentDevices} componentName={devicesListProps.componentName} isScene={devicesListProps.isScene} activationStatus={devicesListProps.activationStatus} onStatusChange={devicesListProps.deviceChangeStatus}
-            onSceneActivation={devicesListProps.sceneDevicesChangeStatus}/>
+            <DeviceList
+              devices={devicesListProps.componentDevices}
+              componentName={devicesListProps.componentName}
+              isScene={devicesListProps.isScene}
+              activationStatus={devicesListProps.activationStatus}
+              onStatusChange={devicesListProps.deviceChangeStatus}
+              onSceneActivation={devicesListProps.sceneDevicesChangeStatus}/>
           </Col>
         </Row>
       </UIPanel>
