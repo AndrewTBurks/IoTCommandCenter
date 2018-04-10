@@ -27,9 +27,6 @@ class ControlAutomationPanel extends Component {
   render() {
     let { spaces, scenes, devicesListProps } = this.state;
 
-    console.log(this.props.devicesListProps.componentDevices);
-    console.log(this.state.devicesListProps.componentDevices);
-
     return (
         <UIPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation">
         <Row style={{ height: "50%" }}>
