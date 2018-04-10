@@ -14,6 +14,7 @@ import DeviceList from './components/control-automation/DeviceList';
 import AppendableList from './components/control-automation/AppendableList';
 
 import DeviceInfoList from './components/information/DeviceInfoList';
+import AddScenePanel from './components/control-automation/AddScenePanel'
 
 class App extends Component {
   constructor(props) {
@@ -27,8 +28,35 @@ class App extends Component {
       componentName: 'All',
       isScene: null,
       activationStatus: null,
-      modalState: false
+      modalState: false,
+
+      creatingScene: true
     };
+
+    this.onAddScene = this.onAddScene.bind(this);
+    this.onSaveNewScene = this.onSaveNewScene.bind(this);
+    this.onCancelSceneCreation = this.onCancelSceneCreation.bind(this);
+  }
+
+  onAddScene() {
+    this.setState({creatingScene: true});
+  }
+
+  onSaveNewScene(sceneInfo) {
+    console.log(sceneInfo);
+
+    this.state.scenes.push(sceneInfo);
+
+    console.log(this.state.scenes);
+
+    this.setState({
+      scenes: this.state.scenes,
+      creatingScene: false
+    });
+  }
+
+  onCancelSceneCreation() {
+    this.setState({ creatingScene: false });
   }
 
 
@@ -72,9 +100,21 @@ class App extends Component {
             </UIPanel>
           </Col>
           <Col md={6} className="mainPanel">
-            <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
+            {
+              this.state.creatingScene ? 
+              (
+                <AddScenePanel devices={devices} onsave={this.onSaveNewScene} oncancel={this.onCancelSceneCreation}/>
+              ) : 
+              (
+                <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
+                  <DeviceInfoList devices={devices} />
+                </UIPanel>
+              )
+            }
+            {/* <UIPanel title="Device Information" description="Use this section to explore device information and statistics">
               <DeviceInfoList devices={devices} />
-            </UIPanel>
+            </UIPanel> */}
+            {/* <AddScenePanel devices={devices} onsave={onSaveNewScene} oncancel={onCancelSceneCreation}/> */}
           </Col>
         </Row>
 
@@ -167,8 +207,6 @@ class App extends Component {
 
       _this.setState({componentDevices: newComponentDevices, componentName: componentName, isScene: isScene, activationStatus: activationStatus});
     }//onItemSelection()
-
-
   }
 }
 
