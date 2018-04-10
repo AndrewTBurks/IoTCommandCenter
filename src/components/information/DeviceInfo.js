@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
 import { Panel , Row , Col } from 'react-bootstrap'
+import DeviceChart from "./DeviceChart";
  
 class DeviceInfo extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class DeviceInfo extends Component {
              
             <Col md={9} style={{height:"100%", padding:"8px"}}>
               <div style={{border: "1px solid #aaa", height:"100%", padding:"5px"}}>
-                No Device History Found
+                <DeviceChart data={data}/>
               </div>
             </Col>
           </Row>
