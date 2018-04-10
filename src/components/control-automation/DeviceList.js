@@ -18,7 +18,7 @@ class DeviceList extends Component {
         <div className="listHeader">
             {
                 this.props.isScene ? (
-                    this.props.activationStatus === 'active' ?
+                    this.props.activationStatus === 'active' ?  
                         (<Button bsStyle="success" className="activateScene" disabled>Active</Button>) :
                         (<Button bsStyle="success" className="activateScene" onClick={() => {this.props.onSceneActivation(this.props.devices, this.props.componentName);}}>Activate Scene</Button>)
                 ) : (
