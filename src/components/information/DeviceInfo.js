@@ -17,9 +17,20 @@ class DeviceInfo extends Component {
   render() {
     let { info, status, data } = this.state;
     let powerValues = data.map(x => x.power).filter(val => val !== 0);
-    let max = Math.max(...powerValues);
-    let min = Math.min(...powerValues);
-    let avg = (powerValues.reduce((a, b)=>a+b)/powerValues.length);
+
+    let min, max, avg;
+
+    // handle case of device off the entire time
+    if (powerValues.length) {
+      max = Math.max(...powerValues).toFixed(2);
+      min = Math.min(...powerValues).toFixed(2);
+      avg = (powerValues.reduce((a, b) => a + b) / powerValues.length).toFixed(2);
+    } else {
+      max = "N/A";
+      min = "N/A";
+      avg = "N/A";
+    }
+
     return (
       <Panel className="deviceInfo" bsStyle={status === "on" ? "success" : "danger"}>
         <Panel.Heading className="deviceInfoHeader">
@@ -43,9 +54,9 @@ class DeviceInfo extends Component {
           <Row style={{height: "175px"}}> 
             <Col md={3} style={{height:"100%", padding:"8px"}}>
               <div style={{border: "1px solid #aaa", height:"100%", padding:"5px"}}>
-                <p style={{padding: "5px"}}>Max: {max.toFixed(2)} W</p>
-                <p style={{padding: "5px"}}>Avg: {avg.toFixed(2)} W</p>
-                <p style={{padding: "5px"}}>Min: {min.toFixed(2)} W</p>
+                <p style={{padding: "5px"}}>Max: {max} W</p>
+                <p style={{padding: "5px"}}>Avg: {avg} W</p>
+                <p style={{padding: "5px"}}>Min: {min} W</p>
               </div>
             </Col>
              
