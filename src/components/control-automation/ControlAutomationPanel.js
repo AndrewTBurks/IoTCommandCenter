@@ -43,7 +43,6 @@ class ControlAutomationPanel extends Component {
               devices={devicesListProps.componentDevices}
               componentName={devicesListProps.componentName}
               isScene={devicesListProps.isScene}
-              activationStatus={devicesListProps.activationStatus}
               onStatusChange={devicesListProps.deviceChangeStatus}
               onSceneActivation={devicesListProps.sceneDevicesChangeStatus}/>
           </Col>

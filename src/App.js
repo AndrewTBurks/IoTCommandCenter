@@ -28,7 +28,6 @@ class App extends Component {
       componentDevices: props.devices,
       componentName: 'All',
       isScene: null,
-      activationStatus: null,
       modalState: false,
 
       creatingScene: false
@@ -62,7 +61,7 @@ class App extends Component {
 
 
   render() {
-    let { devices, deviceDataMap, spaces, scenes, componentDevices, componentName, isScene, activationStatus, modalState } = this.state;
+    let { devices, deviceDataMap, spaces, scenes, componentDevices, componentName, isScene, modalState } = this.state;
     let _this = this; // alias this
 
     //property for devicelist
@@ -70,7 +69,6 @@ class App extends Component {
       componentDevices: componentDevices,
       componentName: componentName,
       isScene: isScene,
-      activationStatus: activationStatus,
       deviceChangeStatus: deviceChangeStatus,
       sceneDevicesChangeStatus: sceneDevicesChangeStatus,
       onAddScene: this.onAddScene
@@ -160,12 +158,6 @@ class App extends Component {
 
       let sName = sceneName.substring(sceneName.indexOf(':') + 2);
 
-      newScenes.forEach(function (s) {
-        if (s.name === sName) {
-          s.activationStatus = "active";
-        }
-      });
-
       newDevices.forEach(function (d) {
         sceneDevices.forEach(function (sd) {
           if (d.info.name === sd.info.name) {
@@ -174,18 +166,17 @@ class App extends Component {
         });
       });
 
-      _this.setState({ devices: newDevices, activationStatus: "active", modalState: true, scenes: newScenes });
+      _this.setState({ devices: newDevices, modalState: true, scenes: newScenes });
     }//sceneDevicesChangeStatus()
 
     // componentName defines what is selected (Scene or Space)
     function onItemSelection(componentName, itemSelected) {
-      let newComponentDevices, isScene, activationStatus;
+      let newComponentDevices, isScene;
 
       console.log("onItemSelection", arguments);
 
       if (componentName === 'Scenes') {
         isScene = true;
-        activationStatus = itemSelected.activationStatus;
         componentName = 'Scene: ' + itemSelected.name;
         newComponentDevices = itemSelected.devices.map((object) => _this.state.devices.find((device) => device.info.name === object.deviceName));
 
@@ -200,7 +191,7 @@ class App extends Component {
         componentName = 'Space: ' + itemSelected.name;
       }
 
-      _this.setState({ componentDevices: newComponentDevices, componentName: componentName, isScene: isScene, activationStatus: activationStatus });
+      _this.setState({ componentDevices: newComponentDevices, componentName: componentName, isScene: isScene });
     }//onItemSelection()
   }
 }

@@ -13,26 +13,28 @@ class DeviceList extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     return ( 
       <div className="deviceList" style={{height: "100%"}}>
         <div className="listHeader">
             {
-                this.props.isScene ? (
-                    this.props.activationStatus === 'active' ?  
-                        (<Button bsStyle="success" className="activateScene" disabled>Active</Button>) :
-                        (<Button bsStyle="success" className="activateScene" onClick={() => {this.props.onSceneActivation(this.props.devices, this.props.componentName);}}>Activate Scene</Button>)
-                ) : (
-                    ""
-                )
+              this.props.isScene ? (
+                  !this.props.devices.find((device) => device.status !== device.deviceSceneStatus) ?
+                    (<Button bsStyle="success" className="activateScene" disabled>Active</Button>) :
+                    (<Button bsStyle="success" className="activateScene" onClick={() => {this.props.onSceneActivation(this.props.devices, this.props.componentName);}}>Activate Scene</Button>)
+              ) : (
+                  ""
+              )
             }
           <div className="listTitle">Devices ({this.props.componentName})</div>
         </div>
         <div className="containerDiv">
             <div className="info">Current Status</div>
             {
-                this.props.isScene ? (
-                    <div className="sceneInfo">Status on Activation</div>
-                ) : ("")
+              this.props.isScene ? (
+                <div className="sceneInfo">Status on Activation</div>
+              ) : ("")
             }
         </div>
         <div style={{overflowY: "scroll", maxHeight: "80%"}}>        

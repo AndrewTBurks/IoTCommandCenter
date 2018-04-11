@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Panel , Row , Col } from 'react-bootstrap'
+import { Panel , Row , Col, Label } from 'react-bootstrap'
 import DeviceChart from "./DeviceChart";
+import AddScenePanel from '../control-automation/AddScenePanel'
  
 class DeviceInfo extends Component {
   constructor(props) {
@@ -23,7 +24,20 @@ class DeviceInfo extends Component {
       <Panel className="deviceInfo" bsStyle={status === "on" ? "success" : "danger"}>
         <Panel.Heading className="deviceInfoHeader">
           {info.name}
-          {info.status}
+          <Label className="deviceInfoUsageLabel"
+            bsStyle={status === "on" ? "success" : "danger"}
+              style={{
+                display: "inline-block",
+                float: "right",
+                fontSize: "12px",
+                fontWeight: "bold"}}>
+            <span style={{margin: "0 5px"}}>
+              {status.toUpperCase()}
+            </span>
+            <span style={{margin: "0 5px"}}>
+              {data[data.length - 1].power.toFixed(2)} W
+            </span>
+          </Label>
         </Panel.Heading>
         <Panel.Body>
           <Row style={{height: "175px"}}> 

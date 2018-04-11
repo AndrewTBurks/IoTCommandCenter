@@ -48,7 +48,6 @@ class AddSceneSelectedDevices extends Component {
   onSaveScene() {
     let scene = {
       name: this.state.inputVal,
-      activationStatus: "inactive",
       devices: this.state.devices
     };
 

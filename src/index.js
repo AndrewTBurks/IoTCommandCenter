@@ -90,7 +90,6 @@ let defaultSpaces = [
 let defaultScenes = [
     {
         name: "At Work",
-        activationStatus: "inactive",
         devices: [
             {deviceName: "Space Heater", deviceSceneStatus: "on"},
             {deviceName: "Incandescent Lamp", deviceSceneStatus: "on"}
@@ -98,7 +97,6 @@ let defaultScenes = [
     },
     {
         name: "Good Morning",
-        activationStatus: "active",
         devices: [
             {deviceName: "Dehumidifier", deviceSceneStatus: "off"},
             {deviceName: "Space Heater", deviceSceneStatus: "on"}
@@ -106,7 +104,6 @@ let defaultScenes = [
     },
     {
         name: "Bed Time",
-        activationStatus: "inactive",
         devices: [
             {deviceName: "Incandescent Lamp", deviceSceneStatus: "off"},
             {deviceName: "Space Heater", deviceSceneStatus: "on"}
@@ -114,7 +111,6 @@ let defaultScenes = [
     },
     {
         name: "Party!",
-        activationStatus: "inactive",
         devices: [
             {deviceName: "Incandescent Lamp", deviceSceneStatus: "on"}
         ]
