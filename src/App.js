@@ -15,6 +15,7 @@ import DeviceInfoList from './components/information/DeviceInfoList';
 import AddScenePanel from './components/control-automation/AddScenePanel';
 import ControlAutomationPanel from './components/control-automation/ControlAutomationPanel';
 import DeviceInformationPanel from './components/information/DeviceInformationPanel';
+import AlertDismissable from './components/common/AlertDismissable';
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class App extends Component {
       componentName: 'All',
       isScene: null,
       modalState: false,
-
+      sceneNameAlertState: false,
       creatingScene: false
     };
 
@@ -44,15 +45,25 @@ class App extends Component {
 
   onSaveNewScene(sceneInfo) {
     console.log(sceneInfo);
-
-    this.state.scenes.push(sceneInfo);
-
-    console.log(this.state.scenes);
-
-    this.setState({
-      scenes: this.state.scenes,
-      creatingScene: false
-    });
+    let sceneNames = this.state.scenes.map(s => s.name);
+    if(sceneNames.includes(sceneInfo.name)){
+      console.log("Scene already exists");
+      this.setState({
+        scenes: this.state.scenes,
+        creatingScene: true,
+        modalState: false,
+        sceneNameAlertState: true
+      });
+    } else {
+      this.state.scenes.push(sceneInfo);
+      console.log(this.state.scenes);
+      this.setState({
+        scenes: this.state.scenes,
+        creatingScene: false,
+        modalState: true,
+        sceneNameAlertState: false
+      });
+    }
   }
 
   onCancelSceneCreation() {
@@ -61,7 +72,7 @@ class App extends Component {
 
 
   render() {
-    let { devices, deviceDataMap, spaces, scenes, componentDevices, componentName, isScene, modalState } = this.state;
+    let { devices, deviceDataMap, spaces, scenes, componentDevices, componentName, isScene, modalState, sceneNameAlertState } = this.state;
     let _this = this; // alias this
 
     //property for devicelist
@@ -75,6 +86,7 @@ class App extends Component {
     };
 
     return (
+
       <Grid fluid className="modal-container">
         <Navbar inverse fluid>
           <Navbar.Header>
@@ -115,30 +127,53 @@ class App extends Component {
           show={modalState}
           onHide={handleHide}
           bsSize="sm"
-          dialogClassName="successModal"
-        >
+          dialogClassName="successModal">
+
           <Modal.Header className="modalHeader">
             <Modal.Title>
-              <Glyphicon glyph="ok" className="glyphOk" style={{ marginRight: "5px", color: "#69a85c" }} />
+              <Glyphicon glyph="ok" className="glyphIcon" style={{ marginRight: "5px", color: "#69a85c" }} />
             </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
             <span className="successMessage">Success</span>
             Scene has been successfully activated
-            </Modal.Body>
+          </Modal.Body>
 
           <Modal.Footer className="modalFooter">
             <Button className="modalCloseButton" onClick={handleHide}>Proceed</Button>
           </Modal.Footer>
         </Modal>
 
+        {/*scene name exists alert dialog*/}
+
+        <Modal
+          show={sceneNameAlertState}
+          onHide={handleHide}
+          bsSize="sm"
+          dialogClassName="successModal">
+
+          <Modal.Header className="alertModalHeader">
+            <Modal.Title>
+              <Glyphicon glyph="remove" className="glyphIcon" style={{ marginRight: "5px", color: "#a94442" }} />
+            </Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <span className="alertMessage">Alert</span>
+            Scene name already exists
+          </Modal.Body>
+
+          <Modal.Footer className="alertModalFooter">
+            <Button className="modalCloseButton" onClick={handleHide}>Dismiss</Button>
+          </Modal.Footer>
+        </Modal>
 
       </Grid>
     );
 
     function handleHide() {
-      _this.setState({ modalState: false });
+      _this.setState({ modalState: false, sceneNameAlertState: false});
     }
 
     function deviceChangeStatus(deviceName, newStatus) {

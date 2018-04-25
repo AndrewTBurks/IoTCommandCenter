@@ -103,11 +103,18 @@ body,
     color: #69a85c;
 }
 
+.alertMessage{
+    display: block;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #a94442;
+}
+
 .modalHeader{
     background-color: #dff0d8;
 }
 
-.glyphOk{
+.glyphIcon{
     font-size: 35px;
 }
 
@@ -119,4 +126,13 @@ body,
 .modalCloseButton{
     padding: 10px;
     font-size: 15px;
+}
+
+.alertModalFooter{
+    text-align: center;
+    background-color: #ebccd1;
+}
+
+.alertModalHeader{
+    background-color: #ebccd1;
 }

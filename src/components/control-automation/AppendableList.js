@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 
-import { ListGroup, ListGroupItem , Button , Glyphicon} from 'react-bootstrap';
+import { ListGroup, ListGroupItem , Button , Glyphicon, Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 class AppendableList extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       items: props.items, 
-      name: props.name 
+      name: props.name,
+      tooltip: props.tooltip
     };
   }
 
 
   render() {
-    let { items, name } = this.state;
+    let { items, name, tooltip } = this.state;
+
+    const tooltipComponent = (
+      <Tooltip id="tooltip">
+        {tooltip}
+      </Tooltip>
+    );
 
     return (
       <div className="appendableList" style={{height: "100%"}}>
         <div className="listHeader">
-          <div className="listTitle">{name}</div>
+            <OverlayTrigger placement="top" overlay={tooltipComponent}>
+              <div className="listTitle">{name}</div>
+            </OverlayTrigger>
           <Button 
             bsSize="xsmall" 
             bsStyle="success"
