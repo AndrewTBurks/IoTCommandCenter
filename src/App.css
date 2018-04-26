@@ -11,7 +11,7 @@ body,
 }
 
 body {
-    font-size: 1.5vmin;
+    /* font-size: 1.5vmin; */
 }
 
 #app {
@@ -51,7 +51,8 @@ body {
 
 .listHeader .listTitle {
     display: inline-block;
-    font-size: 1.75vmin;
+    /* font-size: 1.75vmin; */
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
@@ -61,7 +62,7 @@ body {
 
 .deviceList .device .deviceName {
     margin: 0 20px;
-    font-size: 1.5vmin;
+    font-size: 16px;
 }
 
 .listSelectable:hover {

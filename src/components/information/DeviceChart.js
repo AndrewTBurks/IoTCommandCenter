@@ -28,10 +28,18 @@ class DeviceChart extends Component {
 
     return (
       <FlexibleXYPlot xType="time">
-        <LineMarkSeries data={chartData} size={3}/>
         {/* <XAxis title="Time" /> */}
-        <XAxis hideLine title="Time"/>
-        <YAxis title="Usage (W)"/>
+        <XAxis title="Time" style={{
+          line: {stroke: '#6b6b76', strokeWidth: 0.5},
+          ticks: {stroke: '#6b6b76'},
+          text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600}
+        }}/>
+        <YAxis title="Usage (W)" style={{
+          line: {stroke: '#6b6b76', strokeWidth: 0.5},
+          ticks: {stroke: '#6b6b76'},
+          text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600}
+        }}/>
+        <LineMarkSeries data={chartData} size={3}/>
       </FlexibleXYPlot>
     );
   }

@@ -7,35 +7,49 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 let defaultDevices = [
-  { 
+  {
     info: {
       name: "Kitchen Fan",
       normalUsage: 100
     },
     status: "off"
   },
-  { 
+  {
     info: {
       name: "Space Heater",
       normalUsage: 500
     },
     status: "off"
   },
-  { 
+  {
     info: {
       name: "Incandescent Lamp",
       normalUsage: 300
     },
     status: "on"
   },
-  { 
+  {
     info: {
-      name: "Large Hadron Collider",
-      normalUsage: 10000
+      name: "Hue Light - Bedroom",
+      normalUsage: 30
     },
     status: "off"
   },
-  { 
+  {
+    info: {
+      name: "Hue Light - Living Room",
+      normalUsage: 30
+    },
+    status: "off"
+  },
+  {
+    info: {
+      name: "Computer Monitor",
+      normalUsage: 200
+    },
+    status: "off"
+  },
+  {
     info: {
       name: "Dehumidifier",
       normalUsage: 50
@@ -63,7 +77,8 @@ let defaultSpaces = [
       name: "Living Room",
         devices: [
             "Space Heater",
-            "Incandescent Lamp"
+            "Incandescent Lamp",
+            "Hue Light - Living Room"
         ]
     },
     {
@@ -76,7 +91,8 @@ let defaultSpaces = [
     {
       name: "Bedroom",
         devices: [
-            "Incandescent Lamp"
+            "Incandescent Lamp",
+            "Hue Light - Bedroom"
         ]
     },
     {
@@ -106,6 +122,7 @@ let defaultScenes = [
         name: "Bed Time",
         devices: [
             {deviceName: "Incandescent Lamp", deviceSceneStatus: "off"},
+            {deviceName: "Hue Light - Bedroom", deviceSceneStatus: "off"},
             {deviceName: "Space Heater", deviceSceneStatus: "on"}
         ]
     },

@@ -42,21 +42,21 @@ class DeviceInfo extends Component {
           </Label>
         </Panel.Heading>
         <Panel.Body>
-          <Row style={{ height: "175px" }}>
-            <Col xs={3} style={{ height: "100%", padding: "8px" }}>
-              <div style={{ border: "1px solid #aaa", height: "100%", padding: "5px" }}>
-                <p style={{ padding: "5px" }}>Max: {max} W</p>
-                <p style={{ padding: "5px" }}>Avg: {avg} W</p>
-                <p style={{ padding: "5px" }}>Min: {min} W</p>
+          <div style={{ height: "175px", display: "flex", flexDirection: "row", alignContent: "stretch" }}>
+            <div style={{ height: "100%", padding: "8px", display: "flex", alignItems: "center"}}>
+              <div style={{ padding: "5px" }}>
+                <p style={{ padding: "5px", whiteSpace: "nowrap" }}><strong>Max:</strong> {max} W</p>
+                <p style={{ padding: "5px", whiteSpace: "nowrap" }}><strong>Avg:</strong> {avg} W</p>
+                <p style={{ padding: "5px", whiteSpace: "nowrap" }}><strong>Min:</strong> {min} W</p>
               </div>
-            </Col>
+            </div>
 
-            <Col xs={9} style={{ height: "100%", padding: "8px" }}>
-              <div style={{ border: "1px solid #aaa", height: "100%", padding: "5px" }} ref={this.saveElem}>
+            <div style={{ height: "100%", padding: "8px", display: "flex", flex: "1" }}>
+              <div style={{ background: "rgba(200, 225, 250, 0.25)", border: "1px solid rgba(100, 150, 175, 0.5)",  height: "100%", padding: "5px", width: "100%" }} ref={this.saveElem}>
                 <DeviceChart data={data} width={width} />
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Panel.Body>
       </Panel>;
   }
