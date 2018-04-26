@@ -172,3 +172,13 @@ body {
     color: #fff;
     margin-bottom: 2px;
 }
+
+.sceneActive{
+    float: right;
+    color: #f3c973;
+}
+
+.sceneInactive {
+    float: right;
+    color: #DCDCDC;
+}

@@ -32,10 +32,10 @@ class ControlAutomationPanel extends Component {
         <UIPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation">
         <Row style={{ height: "50%" }}>
           <Col xs={6} className="spacesList">
-            <AppendableList name="Spaces" tooltip="Rooms in a house" items={spaces} itemSelected={this.props.onItemSelection}/>
+            <AppendableList name="Spaces" tooltip="Rooms in a house" items={spaces} isScene={false} itemSelected={this.props.onItemSelection}/>
           </Col>
           <Col xs={6} className="scenesList">
-            <AppendableList name="Scenes" tooltip="Configuration of devices" items={scenes} itemSelected={this.props.onItemSelection} onadd={this.state.devicesListProps.onAddScene}/>
+            <AppendableList name="Scenes" tooltip="Configuration of devices" items={scenes} itemSelected={this.props.onItemSelection} devices={this.props.devices} isScene={true} onadd={this.state.devicesListProps.onAddScene}/>
           </Col>
         </Row>
         <Row style={{ height: "50%" }}>

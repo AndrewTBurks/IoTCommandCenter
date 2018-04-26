@@ -12,7 +12,6 @@ class AppendableList extends Component {
     };
   }
 
-
   render() {
     let { items, name, tooltip } = this.state;
 
@@ -43,6 +42,7 @@ class AppendableList extends Component {
               items.map((item, i) => (
                 <ListGroupItem key={i} className="listSelectable" onClick={() => {this.props.itemSelected(name,item)}}>
                   {item.name}
+                  {this.props.isScene ? (sceneActivationStatus(item, this.props.devices)) ? (<Glyphicon glyph="record" className="sceneActive"/>) : (<Glyphicon glyph="record" className="sceneInactive"/>) : ""}
                 </ListGroupItem>
               ))
             }
@@ -51,6 +51,29 @@ class AppendableList extends Component {
       </div>
     );
   }
+}
+
+function sceneActivationStatus(scene, allDevices){
+    var isActive = [];
+    var sceneDevices = scene.devices;
+    console.log(sceneDevices, allDevices);
+
+    sceneDevices.forEach(function(d){
+        allDevices.forEach(function(ad){
+            if(d.deviceName == ad.info.name){
+                if(d.deviceSceneStatus == ad.status)
+                {
+                    isActive.push(true);
+                    // return;
+                }
+                else {
+                    isActive.push(false);
+                }
+            }
+        });
+    });
+
+   return !isActive.includes(false);
 }
  
 export default AppendableList;
