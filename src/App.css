@@ -52,6 +52,7 @@ body {
 .listHeader .listTitle {
     display: inline-block;
     font-size: 1.75vmin;
+    margin-bottom: 10px;
 }
 
 .deviceList .device {

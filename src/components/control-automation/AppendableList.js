@@ -26,7 +26,7 @@ class AppendableList extends Component {
       <div className="appendableList" style={{height: "100%"}}>
         <div className="listHeader">
             <OverlayTrigger placement="top" overlay={tooltipComponent}>
-              <div className="listTitle">{name}</div>
+              <div className="listTitle">{name} {tooltip ? (<Glyphicon glyph="info-sign" />) : ''}</div>
             </OverlayTrigger>
           <Button 
             bsSize="xsmall" 

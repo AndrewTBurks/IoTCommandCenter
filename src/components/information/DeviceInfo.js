@@ -6,24 +6,12 @@ import AddScenePanel from '../control-automation/AddScenePanel'
 class DeviceInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = { info: props.info, status: props.status, data: props.data, width: 500 };
-
-    this.height = null;
-
-    this.saveElem = this.saveElem.bind(this);
+    this.state = { info: props.info, status: props.status, data: props.data };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // just overwrite old state completely with new props
-    return { info: nextProps.info, status: nextProps.status };
-  }
-
-  componentDidMount() {
-    this.setState({ width: this.div.clientWidth })
-  }
-
-  saveElem(element) {
-    this.div = element; 
+    return { info: nextProps.info, status: nextProps.status, data: nextProps.data };
   }
 
   render() {
