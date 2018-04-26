@@ -69,35 +69,35 @@ body {
     background-color: #dff0d8;
 }
 
-.device .labels{
+.device .labels {
     float: right;
     text-transform: capitalize;
     padding: 5px 15px 5px 15px;
     margin-right: 15px;
 }
 
-.deviceList .activateScene{
+.deviceList .activateScene {
     float: right;
     margin-bottom: 5px;
 }
 
-.list-group{
+.list-group {
     margin-top: 5px;
 }
 
-.containerDiv{
+.containerDiv {
     display: inline-block;
     width: 100%;
     color: #406f8c;
     font-weight: 600;
 }
 
-.info{
+.info {
     float: left;
-    margin-left:10px;
+    margin-left: 10px;
 }
 
-.sceneInfo{
+.sceneInfo {
     float: right;
     margin-right: 10px;
 }
@@ -107,47 +107,67 @@ body {
 }
 
 /*modal styles*/
-.successModal{
+
+.successModal {
     text-align: center;
 }
 
-.successMessage{
+.successMessage {
     display: block;
     text-transform: uppercase;
     font-size: 25px;
     color: #69a85c;
 }
 
-.alertMessage{
+.alertMessage {
     display: block;
     text-transform: uppercase;
     font-size: 25px;
     color: #a94442;
 }
 
-.modalHeader{
+.modalHeader {
     background-color: #dff0d8;
 }
 
-.glyphIcon{
+.glyphIcon {
     font-size: 35px;
 }
 
-.modalFooter{
+.modalFooter {
     text-align: center;
     background-color: #dff0d8;
 }
 
-.modalCloseButton{
+.modalCloseButton {
     padding: 10px;
     font-size: 15px;
 }
 
-.alertModalFooter{
+.alertModalFooter {
     text-align: center;
     background-color: #ebccd1;
 }
 
-.alertModalHeader{
+.alertModalHeader {
     background-color: #ebccd1;
+}
+
+.label a {
+    color: #bbb;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.label a:hover {
+    opacity: 1.0
+}
+
+.label a {
+    margin: 0 0 0 .3em;
+}
+
+.label a .glyphicon-white {
+    color: #fff;
+    margin-bottom: 2px;
 }
