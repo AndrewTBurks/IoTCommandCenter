@@ -44,8 +44,8 @@ let defaultDevices = [
   },
   {
     info: {
-      name: "Hue Light",
-      normalUsage: 30
+      name: "Computer Monitor",
+      normalUsage: 200
     },
     status: "off"
   },
@@ -77,7 +77,8 @@ let defaultSpaces = [
       name: "Living Room",
         devices: [
             "Space Heater",
-            "Incandescent Lamp"
+            "Incandescent Lamp",
+            "Hue Light - Living Room"
         ]
     },
     {
@@ -90,7 +91,8 @@ let defaultSpaces = [
     {
       name: "Bedroom",
         devices: [
-            "Incandescent Lamp"
+            "Incandescent Lamp",
+            "Hue Light - Bedroom"
         ]
     },
     {
@@ -120,6 +122,7 @@ let defaultScenes = [
         name: "Bed Time",
         devices: [
             {deviceName: "Incandescent Lamp", deviceSceneStatus: "off"},
+            {deviceName: "Hue Light - Bedroom", deviceSceneStatus: "off"},
             {deviceName: "Space Heater", deviceSceneStatus: "on"}
         ]
     },
