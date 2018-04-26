@@ -26,6 +26,7 @@ class ControlAutomationPanel extends Component {
 
   render() {
     let { spaces, scenes, devicesListProps } = this.state;
+    let _this = this;
 
     return (
         <UIPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation">
@@ -44,11 +45,16 @@ class ControlAutomationPanel extends Component {
               componentName={devicesListProps.componentName}
               isScene={devicesListProps.isScene}
               onStatusChange={devicesListProps.deviceChangeStatus}
-              onSceneActivation={devicesListProps.sceneDevicesChangeStatus}/>
+              onSceneActivation={devicesListProps.sceneDevicesChangeStatus}
+              showAll={showAll}/>
           </Col>
         </Row>
       </UIPanel>
     );
+
+    function showAll() {
+      _this.setState({componentName: 'All'});
+    }
   }
 }
  

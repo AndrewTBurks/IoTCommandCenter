@@ -33,7 +33,7 @@ class DeviceList extends Component {
               Devices&nbsp;
                 <Label bsStyle="info">
                   {this.props.componentName}&nbsp;
-                  <a><i class="remove glyphicon glyphicon-remove-circle glyphicon-white"></i></a>
+                  <a><i class="remove glyphicon glyphicon-remove-circle glyphicon-white" onClick={this.props.showAll}></i></a>
                 </Label>
               </React.Fragment>
             )}
