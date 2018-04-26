@@ -13,20 +13,23 @@ class ControlAutomationPanel extends Component {
       spaces: props.spaces, 
       scenes: props.scenes, 
       devicesListProps: props.devicesListProps,
+      componentName: props.devicesListProps.componentName
     };
-  }
 
+    this.showAll = this.showAll.bind(this);
+  }
+  
   static getDerivedStateFromProps(newProps, prevState) {
     return {
       spaces: newProps.spaces, 
       scenes: newProps.scenes, 
       devicesListProps: newProps.devicesListProps,
+      componentName: newProps.componentName
     };
   }
 
   render() {
-    let { spaces, scenes, devicesListProps } = this.state;
-    let _this = this;
+    let { spaces, scenes, devicesListProps, componentName } = this.state;
 
     return (
         <UIPanel title="Device Control and Automation" description="Use this section to set up and control basic device automation">
@@ -46,15 +49,15 @@ class ControlAutomationPanel extends Component {
               isScene={devicesListProps.isScene}
               onStatusChange={devicesListProps.deviceChangeStatus}
               onSceneActivation={devicesListProps.sceneDevicesChangeStatus}
-              showAll={showAll}/>
+              showAll={this.showAll}/>
           </Col>
         </Row>
       </UIPanel>
     );
+  }
 
-    function showAll() {
-      _this.setState({componentName: 'All'});
-    }
+  showAll() {
+    this.setState({componentName: 'All'});
   }
 }
  
