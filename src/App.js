@@ -87,7 +87,7 @@ class App extends Component {
 
     return (
 
-      <Grid fluid className="modal-container">
+      <Grid fluid className="modal-container" id="app">
         <Navbar inverse fluid>
           <Navbar.Header>
             <Navbar.Brand>
@@ -105,7 +105,7 @@ class App extends Component {
 
         <Row className="content">
 
-          <Col md={6} className="mainPanel">
+          <Col xs={6} className="mainPanel">
             {
               this.state.creatingScene ?
                 (
@@ -116,7 +116,7 @@ class App extends Component {
                 )
             }
           </Col>
-          <Col md={6} className="mainPanel">
+          <Col xs={6} className="mainPanel">
             <DeviceInformationPanel devices={devices} deviceDataMap={deviceDataMap}/>
           </Col>
         </Row>

@@ -7,6 +7,13 @@ body,
 #root,
 .container-fluid {
     height: 100%;
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
 }
 
 .navbar-form button {
@@ -14,11 +21,14 @@ body,
 }
 
 .content {
-    height: 90%;
+    /* height: 90%; */
+    display: flex;
+    flex: 1;
+    align-items: stretch;
 }
 
 .mainPanel {
-    height: 100%;
+    /* height: 100%; */
 }
 
 .spacesList,

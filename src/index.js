@@ -31,7 +31,7 @@ let defaultDevices = [
   { 
     info: {
       name: "Large Hadron Collider",
-      normalUsage: 1000000
+      normalUsage: 10000
     },
     status: "off"
   },

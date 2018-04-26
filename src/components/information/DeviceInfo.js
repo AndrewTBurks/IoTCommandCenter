@@ -55,7 +55,7 @@ class DeviceInfo extends Component {
         </Panel.Heading>
         <Panel.Body>
           <Row style={{ height: "175px" }}>
-            <Col md={3} style={{ height: "100%", padding: "8px" }}>
+            <Col xs={3} style={{ height: "100%", padding: "8px" }}>
               <div style={{ border: "1px solid #aaa", height: "100%", padding: "5px" }}>
                 <p style={{ padding: "5px" }}>Max: {max} W</p>
                 <p style={{ padding: "5px" }}>Avg: {avg} W</p>
@@ -63,7 +63,7 @@ class DeviceInfo extends Component {
               </div>
             </Col>
 
-            <Col md={9} style={{ height: "100%", padding: "8px" }}>
+            <Col xs={9} style={{ height: "100%", padding: "8px" }}>
               <div style={{ border: "1px solid #aaa", height: "100%", padding: "5px" }} ref={this.saveElem}>
                 <DeviceChart data={data} width={width} />
               </div>

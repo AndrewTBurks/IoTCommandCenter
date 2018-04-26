@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {XYPlot, LineMarkSeries, XAxis, YAxis} from 'react-vis';
+import {FlexibleWidthXYPlot, LineMarkSeries, XAxis, YAxis} from 'react-vis';
 
 class DeviceChart extends Component {
   constructor(props) {
@@ -18,20 +18,25 @@ class DeviceChart extends Component {
   render() {
     let {data, width} = this.state;
     let chartData = data.map(dataPoint=> {
+      let date = new Date(dataPoint.timestamp);
+
       return {
-        x: new Date(dataPoint.timestamp).getTime(),
+        x: date,
         y: dataPoint.power
       };
     });
 
     return (
-      <XYPlot
-        width={width-5}
-        height={170}>
+      <FlexibleWidthXYPlot
+        // width={width-5}
+        height={170}
+        xType="time"
+        >
         <LineMarkSeries data={chartData}/>
         {/* <XAxis title="Time" /> */}
+        <XAxis bottom={10} title="Time"/>
         <YAxis title="Usage (W)"/>
-      </XYPlot>
+      </FlexibleWidthXYPlot>
     );
   }
 }
