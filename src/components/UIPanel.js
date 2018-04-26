@@ -15,14 +15,14 @@ class UIPanel extends Component {
   render() {
     return (
       <Fragment>
-        <Panel bsStyle="info" style={{height: "100%", boxShadow: "0 0 15px 5px rgba(31, 63, 95, 0.25)", backgroundColor: "#eee"}}>
+        <Panel bsStyle="info" style={{height: "100%", boxShadow: "0 0 15px 5px rgba(31, 63, 95, 0.25)", backgroundColor: "#eee", display: "flex", flexDirection: "column"}}>
           <Panel.Heading>
             <Panel.Title componentClass="h1"
-              style={{fontSize: "2vmin", fontWeight: "bold"}}>
+              style={{fontSize: "20px", fontWeight: "bold"}}>
                 {this.props.title}
               </Panel.Title>
           </Panel.Heading>
-          <Panel.Body style={{height: "90%"}}>
+          <Panel.Body style={{display: "flex", flex: "1", flexDirection: "column"}}>
             {this.props.children}
           </Panel.Body>
           <Panel.Footer style={{color: "#666"}}>

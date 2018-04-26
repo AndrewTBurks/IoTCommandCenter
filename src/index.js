@@ -7,35 +7,49 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 let defaultDevices = [
-  { 
+  {
     info: {
       name: "Kitchen Fan",
       normalUsage: 100
     },
     status: "off"
   },
-  { 
+  {
     info: {
       name: "Space Heater",
       normalUsage: 500
     },
     status: "off"
   },
-  { 
+  {
     info: {
       name: "Incandescent Lamp",
       normalUsage: 300
     },
     status: "on"
   },
-  { 
+  {
     info: {
-      name: "Large Hadron Collider",
-      normalUsage: 10000
+      name: "Hue Light - Bedroom",
+      normalUsage: 30
     },
     status: "off"
   },
-  { 
+  {
+    info: {
+      name: "Hue Light - Living Room",
+      normalUsage: 30
+    },
+    status: "off"
+  },
+  {
+    info: {
+      name: "Hue Light",
+      normalUsage: 30
+    },
+    status: "off"
+  },
+  {
     info: {
       name: "Dehumidifier",
       normalUsage: 50
