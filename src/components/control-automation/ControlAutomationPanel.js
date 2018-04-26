@@ -16,7 +16,6 @@ class ControlAutomationPanel extends Component {
       componentName: props.devicesListProps.componentName
     };
 
-    this.showAll = this.showAll.bind(this);
   }
   
   static getDerivedStateFromProps(newProps, prevState) {
@@ -24,7 +23,7 @@ class ControlAutomationPanel extends Component {
       spaces: newProps.spaces, 
       scenes: newProps.scenes, 
       devicesListProps: newProps.devicesListProps,
-      componentName: newProps.componentName
+      componentName: newProps.devicesListProps.componentName
     };
   }
 
@@ -45,20 +44,17 @@ class ControlAutomationPanel extends Component {
           <Col xs={12} style={{ height: "100%" }}>
             <DeviceList
               devices={devicesListProps.componentDevices}
-              componentName={devicesListProps.componentName}
+              componentName={componentName}
               isScene={devicesListProps.isScene}
               onStatusChange={devicesListProps.deviceChangeStatus}
               onSceneActivation={devicesListProps.sceneDevicesChangeStatus}
-              showAll={this.showAll}/>
+              showAll={this.props.onShowAll}/>
           </Col>
         </Row>
       </UIPanel>
     );
   }
 
-  showAll() {
-    this.setState({componentName: 'All'});
-  }
 }
  
 export default ControlAutomationPanel;

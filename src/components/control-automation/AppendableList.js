@@ -56,7 +56,6 @@ class AppendableList extends Component {
 function sceneActivationStatus(scene, allDevices){
     var isActive = [];
     var sceneDevices = scene.devices;
-    console.log(sceneDevices, allDevices);
 
     sceneDevices.forEach(function(d){
         allDevices.forEach(function(ad){

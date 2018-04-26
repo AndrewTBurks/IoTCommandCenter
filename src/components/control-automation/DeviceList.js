@@ -13,6 +13,8 @@ class DeviceList extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     return (
       <div className="deviceList" style={{ height: "100%" }}>
         <div className="listHeader">
@@ -31,9 +33,9 @@ class DeviceList extends Component {
             ) : (
               <React.Fragment>
               Devices&nbsp;
-                <Label bsStyle="info">
+                <Label bsStyle="info" onClick={() => { this.props.showAll() }}>
                   {this.props.componentName}&nbsp;
-                  <a><i className="remove glyphicon glyphicon-remove-circle glyphicon-white" onClick={this.props.showAll}></i></a>
+                  <a><i className="remove glyphicon glyphicon-remove-circle glyphicon-white"></i></a>
                 </Label>
               </React.Fragment>
             )}
