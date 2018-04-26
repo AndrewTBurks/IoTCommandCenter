@@ -18,7 +18,7 @@ class UIPanel extends Component {
         <Panel bsStyle="info" style={{height: "100%", boxShadow: "0 0 15px 5px rgba(31, 63, 95, 0.25)", backgroundColor: "#eee"}}>
           <Panel.Heading>
             <Panel.Title componentClass="h1"
-              style={{fontSize: "20px", fontWeight: "bold"}}>
+              style={{fontSize: "2vmin", fontWeight: "bold"}}>
                 {this.props.title}
               </Panel.Title>
           </Panel.Heading>
