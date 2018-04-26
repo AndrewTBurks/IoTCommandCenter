@@ -65,7 +65,7 @@ class DeviceInfoList extends Component {
           </Form>
         </div>
         <div style={{ width: "98%", display: "flex", flex: "1", flexDirection: "column", overflowY: "scroll" }}>
-          {devices.sort(this.sortBy[this.state.order]).map((device, i) => (
+          {devices.map(d => (d)).sort(this.sortBy[this.state.order]).map((device, i) => (
             <DeviceInfo
               key={i}
               info={device.info}
