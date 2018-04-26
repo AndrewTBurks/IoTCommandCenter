@@ -15,7 +15,6 @@ import DeviceInfoList from './components/information/DeviceInfoList';
 import AddScenePanel from './components/control-automation/AddScenePanel';
 import ControlAutomationPanel from './components/control-automation/ControlAutomationPanel';
 import DeviceInformationPanel from './components/information/DeviceInformationPanel';
-import AlertDismissable from './components/common/AlertDismissable';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +30,8 @@ class App extends Component {
       isScene: null,
       modalState: false,
       sceneNameAlertState: false,
+      confirmScene: false,
+      pendingScene: '',
       creatingScene: false
     };
 
@@ -52,16 +53,17 @@ class App extends Component {
         scenes: this.state.scenes,
         creatingScene: true,
         modalState: false,
-        sceneNameAlertState: true
+        sceneNameAlertState: true,
+        confirmScene: false
       });
     } else {
-      this.state.scenes.push(sceneInfo);
-      console.log(this.state.scenes);
+      // console.log(this.state.scenes);
       this.setState({
-        scenes: this.state.scenes,
-        creatingScene: false,
-        modalState: true,
-        sceneNameAlertState: false
+        creatingScene: true,
+        modalState: false,
+        sceneNameAlertState: false,
+        confirmScene: true,
+        pendingScene: sceneInfo,
       });
     }
   }
@@ -72,7 +74,7 @@ class App extends Component {
 
 
   render() {
-    let { devices, deviceDataMap, spaces, scenes, componentDevices, componentName, isScene, modalState, sceneNameAlertState } = this.state;
+    let { devices, deviceDataMap, spaces, scenes, componentDevices, componentName, isScene, modalState, sceneNameAlertState, confirmScene, pendingScene } = this.state;
     let _this = this; // alias this
 
     //property for devicelist
@@ -169,11 +171,53 @@ class App extends Component {
           </Modal.Footer>
         </Modal>
 
-      </Grid>
+
+      {/*scene confirmation dialog*/}
+
+        <Modal
+          show={confirmScene}
+          onHide={handleHide}
+          bsSize="sm"
+          dialogClassName="successModal">
+
+          <Modal.Header className="modalHeader">
+            <Modal.Title>
+              <Glyphicon glyph="ok" className="glyphIcon" style={{ marginRight: "5px", color: "#69a85c" }} />
+            </Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <span className="successMessage">Confirm Scene</span>
+          </Modal.Body>
+            <h4>{pendingScene.name}</h4>
+            {
+              (pendingScene.devices||[]).map(device => {
+                return(
+                  <p key={device.deviceName}>{device.deviceName}    -   {device.deviceSceneStatus}</p>
+                );
+              })
+            }
+          <Modal.Footer className="modalFooter">
+            <Button className="modalCloseButton" onClick={handleSceneConfirmationSave}>Proceed</Button>
+            <Button className="modalCloseButton" onClick={handleHide}>Back</Button>
+          </Modal.Footer>
+        </Modal>
+
+    </Grid>
+
     );
 
+    function handleSceneConfirmationSave() {
+      _this.state.scenes.push(_this.state.pendingScene);
+      _this.setState({
+        scenes: _this.state.scenes,
+        confirmScene: false,
+        creatingScene: false
+      })
+    }
+
     function handleHide() {
-      _this.setState({ modalState: false, sceneNameAlertState: false});
+      _this.setState({ modalState: false, sceneNameAlertState: false, confirmScene: false});
     }
 
     function deviceChangeStatus(deviceName, newStatus) {
