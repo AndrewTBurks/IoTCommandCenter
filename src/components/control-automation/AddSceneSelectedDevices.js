@@ -58,11 +58,11 @@ class AddSceneSelectedDevices extends Component {
     let _this = this;
 
     return (
-      <div>
-        <div className="listHeader">
-          <div className="listTitle">New Scene</div>
+      <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
+        <div className="listHeader" style={{display: "flex", justifyContent: "space-between", width: "100%", alignItems: "flex-start"}}>
+          <div className="listTitle" style={{}}>New Scene</div>
 
-          <div style={{ float: "right" }}>
+          <div style={{}}>
             <Form inline>
               <FormGroup>
                 <ControlLabel>Name:</ControlLabel>{" "}
@@ -93,30 +93,32 @@ class AddSceneSelectedDevices extends Component {
             </Form>
           </div>
         </div>
-        <ListGroup>
-          {this.state.devices.map((d, i) => (
-            <ListGroupItem key={i}>
-              {d.deviceName}
-              <Button
-                bsStyle="danger"
-                bsSize="xsmall"
-                style={{ 
-                  float: "right",
-                  marginLeft: "15px"
-                }}
-                onClick={() => {
-                  this.props.onremove(d.deviceName);
-                }}
-              >
-                <Glyphicon glyph="remove" />
-              </Button>
-              <ButtonGroup style={{ float: "right" }}>
-                <Button bsSize="xsmall" bsStyle={d.deviceSceneStatus === "off" ? "danger" : "default"} onClick={() => { this.updateDeviceSelectedStatus(d, "off"); }}>Off</Button>
-                <Button bsSize="xsmall" bsStyle={d.deviceSceneStatus === "on" ? "success" : "default"} onClick={() => { this.updateDeviceSelectedStatus(d, "on"); }}>On</Button>
-              </ButtonGroup>
-            </ListGroupItem>
-          ))}
-        </ListGroup>
+        <div style={{display: "flex", flex: "1", overflowY: "scroll", flexDirection: "column"}}>
+          <ListGroup>
+            {this.state.devices.map((d, i) => (
+              <ListGroupItem key={i}>
+                {d.deviceName}
+                <Button
+                  bsStyle="danger"
+                  bsSize="xsmall"
+                  style={{ 
+                    float: "right",
+                    marginLeft: "15px"
+                  }}
+                  onClick={() => {
+                    this.props.onremove(d.deviceName);
+                  }}
+                >
+                  <Glyphicon glyph="remove" />
+                </Button>
+                <ButtonGroup style={{ float: "right" }}>
+                  <Button bsSize="xsmall" bsStyle={d.deviceSceneStatus === "off" ? "danger" : "default"} onClick={() => { this.updateDeviceSelectedStatus(d, "off"); }}>Off</Button>
+                  <Button bsSize="xsmall" bsStyle={d.deviceSceneStatus === "on" ? "success" : "default"} onClick={() => { this.updateDeviceSelectedStatus(d, "on"); }}>On</Button>
+                </ButtonGroup>
+              </ListGroupItem>
+            ))}
+          </ListGroup>
+        </div>
       </div>
     );
   }

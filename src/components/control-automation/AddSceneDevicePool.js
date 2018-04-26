@@ -11,24 +11,28 @@ class AddSceneDevicePool extends Component {
   }
   render() { 
 
-    return <div>
+    return (
+      <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
         <div className="listHeader">
           <div className="listTitle">Available</div>
         </div>
-        <ListGroup>
-          {
-            this.props.devices.map((d, i) => 
-              <ListGroupItem key={i}>
-                {d.info.name}
-                <Button bsStyle="success" bsSize="xsmall" style={{float: "right"}} onClick={() => { this.props.onselect(d.info.name); }}>
-                  <Glyphicon glyph="plus"/>
-                  Add
-                </Button>
-              </ListGroupItem>
-            )
-          }
-        </ListGroup>
-      </div>;
+        <div style={{display: "flex", flex: "1", overflowY: "scroll", flexDirection: "column"}}>
+          <ListGroup>
+            {
+              this.props.devices.map((d, i) => 
+                <ListGroupItem key={i}>
+                  {d.info.name}
+                  <Button bsStyle="success" bsSize="xsmall" style={{float: "right"}} onClick={() => { this.props.onselect(d.info.name); }}>
+                    <Glyphicon glyph="plus"/>
+                    Add
+                  </Button>
+                </ListGroupItem>
+              )
+            }
+          </ListGroup>
+        </div>
+      </div>
+    );
   }
 }
  
