@@ -13,8 +13,6 @@ class DeviceList extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     return (
       <div className="deviceList" style={{ height: "100%" }}>
         <div className="listHeader">

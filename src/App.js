@@ -307,8 +307,6 @@ class App extends Component {
     function onItemSelection(componentName, itemSelected) {
       let newComponentDevices, isScene;
 
-      console.log("onItemSelection", arguments);
-
       if (componentName === "Scenes") {
         isScene = true;
         componentName = "Scene: " + itemSelected.name;
