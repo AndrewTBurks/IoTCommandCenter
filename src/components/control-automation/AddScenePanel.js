@@ -67,7 +67,7 @@ class AddScenePanel extends Component {
           </Col>
         </Row>
         <Row style={{ height: "50%" }}>
-          <Col md={12}>
+          <Col md={12} style={{height: "100%"}}>
             <AddSceneDevicePool devices={available} onselect={this.selectAvailable}/>          
           </Col>
         </Row>
