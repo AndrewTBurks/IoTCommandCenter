@@ -114,7 +114,7 @@ class App extends Component {
                   <AddScenePanel devices={devices} onsave={this.onSaveNewScene} oncancel={this.onCancelSceneCreation} />
                 ) :
                 (
-                  <ControlAutomationPanel spaces={spaces} scenes={scenes} onItemSelection={onItemSelection} devicesListProps={devicesListProps} />
+                  <ControlAutomationPanel spaces={spaces} scenes={scenes} devices={devices} onItemSelection={onItemSelection} devicesListProps={devicesListProps} />
                 )
             }
           </Col>
